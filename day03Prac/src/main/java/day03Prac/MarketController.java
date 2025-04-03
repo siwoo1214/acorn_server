@@ -13,7 +13,6 @@ public class MarketController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
 		req.setCharacterEncoding("utf-8");
 		
 		String name = req.getParameter("name");
@@ -23,17 +22,12 @@ public class MarketController extends HttpServlet{
 		System.out.println(name);
 		System.out.println(age_);
 		
-		
-		
 		//
-		
 		
 		req.setAttribute("name", name);
 		req.setAttribute("age", age_);
 		
-		
 		req.getRequestDispatcher("WEB-INF/views/marketView.jsp").forward(req, resp);
-		
 	}
 	
 	@Override
@@ -43,8 +37,8 @@ public class MarketController extends HttpServlet{
 //		resp.setContentType("text/html;charset=utf-8");
 				
 		MarketService m = new MarketService();
-		String m_ = m.showAll();
-		System.out.println(m_);
+		String m_ = m.showAll();  
+		System.out.println(m_);//그냥 성공했는지 찍어보기
 		
 		req.setAttribute("infoServe", m_);
 		req.getRequestDispatcher("WEB-INF/views/market.jsp").forward(req, resp);
