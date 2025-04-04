@@ -78,11 +78,11 @@ public class AcornDAO {
 		String sql=" insert  into  acorntbl(id, pw, name)  values(?,?,?) ";	
 		
 		try {
-			   pst =con.prepareStatement(sql);
+			pst =con.prepareStatement(sql);
 			
 			pst.setString(1,  newAcorn.getId());
 			pst.setString(2,  newAcorn.getPw());
-			pst.setString(3,  newAcorn.getName());			
+			pst.setString(3,  newAcorn.getName());
 			pst.executeUpdate();
 			
 		} catch (SQLException e) {
