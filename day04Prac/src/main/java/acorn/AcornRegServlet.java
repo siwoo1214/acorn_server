@@ -13,16 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 //post  : 회원정보를 가져와서 데이터베이스 등록하기 
 
 
-
 @WebServlet("/regAcorn")
 public class AcornRegServlet extends HttpServlet {
-	
 
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	 
-		
+	
 		//
 		req.getRequestDispatcher("WEB-INF/views/joinForm.jsp").forward(req, resp);
 	}
@@ -30,8 +26,7 @@ public class AcornRegServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 
-	
+
 		
 		//  한글설정하기 	
 		req.setCharacterEncoding("utf-8");
