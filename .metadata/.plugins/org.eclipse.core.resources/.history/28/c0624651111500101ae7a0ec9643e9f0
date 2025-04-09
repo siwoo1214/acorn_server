@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>El, JSTL, 단순IF, Choose문 사용하기</h2>
+	
+	<% request.setAttribute("kor", 90); %>
+	<!-- 조건 만족하면 안에 문장 실행 -->
+	<c:if test="${kor>90}">
+		[장학금 지급]
+	</c:if>
+</body>
+</html>

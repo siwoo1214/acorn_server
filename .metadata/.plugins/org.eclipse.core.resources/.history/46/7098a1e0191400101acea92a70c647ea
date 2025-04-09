@@ -1,0 +1,25 @@
+package day07Prac;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/sample2")
+public class SampleServlet2 extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		String data = (String)req.getAttribute("data");
+//		System.out.println(data);
+		
+		//세션저장소에서 data값 꺼내기
+		HttpSession session = req.getSession();
+		String data = (String)session.getAttribute("data");
+		
+		System.out.println(data);
+	}
+}

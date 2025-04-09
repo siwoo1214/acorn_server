@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<style>
+	
+</style>
+<script>
+		function getData(){
+			$.ajax({
+				type : "get",
+				url : "/day06Prac/booklist",
+				success : function(data){
+					console.log(data);
+					
+					let result = document.getElementById("result");
+					console.log(result)
+					console.log(data);
+					
+					let para ="<ul>";
+					console.log(data.length);
+					console.log("왜 출력이 안되는건데 ㅋㅋ")
+					for(let i=0; i<data.length; i++){
+						let books = data[i];
+						console.log("hello")
+						console.log(books);
+						para += "<li>"+books.name+" "+books.price+" "+books.author+" "+books.publisher+"</li>";
+					}
+						para += "</ul>";
+						result.innerHTML+=para;
+				},
+				error : function(err){
+					console.log(err);
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<div id="result"></div>
+	<button onclick="getData()">클릭해보이소</button>
+</body>
+</html>

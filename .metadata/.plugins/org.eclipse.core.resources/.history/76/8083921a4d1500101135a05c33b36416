@@ -1,0 +1,128 @@
+package day06Prac;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class AcornDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "system";
+	String password = "1234";
+
+	public Connection dbcon() {
+
+		Connection con = null;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return con;
+	}
+	
+	public ArrayList<Acorn> selectAll(){
+		Connection con = dbcon();
+		ArrayList<Acorn> list = new ArrayList<>();
+		String sql = "select * from acorntbl";
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				String id = rs.getString(1);
+				String pw = rs.getString(2);
+				String name = rs.getString(3);
+				
+				Acorn acorn = new Acorn(id,pw,name);
+				list.add(acorn);
+			}
+			
+			rs.close();
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public Acorn selectOne(String id) {
+		Connection con = dbcon();
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from acorntbl where id = ?";
+		Acorn acorn = null;
+		
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				String id_ = rs.getString(1);
+				String pw = rs.getString(2);
+				String name = rs.getString(3);
+				
+				acorn = new Acorn(id_, pw, name);
+			}
+			rs.close();
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return acorn;
+	}
+	
+	public void insertMember(Acorn newMember) {
+		Connection con = dbcon();
+		String sql = "insert into acorntbl(id,pw,name) values(?,?,?)";
+		PreparedStatement pst = null;
+		
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, newMember.getId());
+			pst.setString(2, newMember.getPw());
+			pst.setString(3, newMember.getName());
+			pst.executeUpdate();
+			System.out.println(newMember.getName()+"님의 정보가 삽입되었습니다");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		AcornDAO a = new AcornDAO();
+		ArrayList<Acorn> list = a.selectAll();
+		for(Acorn b : list) {
+			System.out.println(b);
+		}
+		System.out.println();
+		System.out.println(a.selectOne("sulivun"));
+		System.out.println();
+		Acorn acorn = new Acorn("Faker","qwer","이상혁");
+		a.insertMember(acorn);
+	}
+}

@@ -1,0 +1,9 @@
+package day07Prac;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/")
+public class SurveyServlet1 extends HttpServlet{
+
+}
