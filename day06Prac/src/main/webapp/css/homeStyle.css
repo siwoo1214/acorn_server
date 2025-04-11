@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.m{
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	flex-direction: column; 
+}
+
+table{
+	text-align: center;
+}
+
+td{
+	border: 1px solid black;
+}
+
+.t-head{
+	background-color: orange;
+}
+
+.t-body:nth-child(even){
+	background-color: #f2f2f2
+}

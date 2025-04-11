@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+
 // 사용자가 요청시 화면전환없이 받으려면  자바스크립트 라이브러리  jquery의  ajax매서드를 통해서 호출해야 
 // 화면전환없이 데이터만 받아올 수 있다 ( 주의 !!  그냥 요청(a 태그)요청 -> 데이터는 오지만, 화면이 바뀐다 )
 // 사용자가 음식정보를 요청하면  json 형태의  음식정보 제공하기 
@@ -45,5 +46,5 @@ public class FoodInfoServlet  extends HttpServlet{
 		  resp.getWriter().print( o);   // food.toString()
 		 
 		 
-	}
+	 }
 }
