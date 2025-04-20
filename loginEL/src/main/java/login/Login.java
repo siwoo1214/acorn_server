@@ -18,7 +18,6 @@ public class Login  extends HttpServlet{
 		 
 	}
 	
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id= req.getParameter("id");
@@ -30,9 +29,6 @@ public class Login  extends HttpServlet{
 			resp.sendRedirect("/loginEL/home");
 		}else {
 			req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req, resp);
-		}
-		 
+		}		 
 	}
-
-
 }

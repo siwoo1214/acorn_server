@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>건의사항</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<!-- <link href="/css/review.css" rel="stylesheet"> -->
+<style>
+	body{
+	text-align: center;
+}
+
+table{
+	border-collapse: collapse;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px rgba(0,0,0,.25);
+	width: 400px;
+	text-align: center;
+	margin: 100px auto;
+}
+
+table:nth-child(3){
+	width: 700px
+}
+
+th{
+	background-color: skyblue;	
+}
+
+table>th,td{
+	width: 200px;
+}
+</style>
+<script>
+	document.addEventListener("DOMContentLoaded",
+	    function reviewList(){
+			$.ajax({
+				type:"GET",
+				url:"/Chillkin/reviewList",
+				success:function(data){
+					console.log(data);
+					
+					 
+					$("#result tr:not(:first)").remove();
+					for(let i = 0; i < data.length; i++){
+						let review = data[i];
+						let str = "<tr>";
+						str += "<td>" + review.R_CODE + "</td>";
+						str += "<td>" + review.ID + "</td>";
+						str += "<td>" + review.Detail + "</td>";
+						str += "</tr>";
+						$("#result").append(str);
+					}
+					
+					 
+				},
+				error:function(err){
+					alert("시스템 실행 오류 ㅜㅜ");
+				}
+			});
+		}
+	);
+</script>
+</head>
+<body>
+	<h2>건의사항 조회 페이지</h2>
+	<a href="/Chillkin/h_main">홈페이지 돌아가기</a>
+
+	<div>
+		<table id="result">
+			<tr>
+				<th>건의 코드</th>
+				<th>작성자</th>
+				<th>내용</th>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

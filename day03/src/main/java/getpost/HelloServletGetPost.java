@@ -15,7 +15,6 @@ public class HelloServletGetPost  extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 
 		
 		//회원등록
 		//회원등록화면
@@ -40,8 +39,7 @@ public class HelloServletGetPost  extends HttpServlet{
 	
 	
 	 @Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
 		 
 	     resp.setCharacterEncoding("utf-8");  //보내는 데이터를 인코딩하는 방법 설정
 		 resp.setContentType("text/html;charset=utf-8"); //  보내는데이터의형식이 html, 웹브라우저가 utf-8로 해석

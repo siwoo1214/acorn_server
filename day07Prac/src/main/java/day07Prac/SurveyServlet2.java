@@ -20,6 +20,7 @@ public class SurveyServlet2 extends HttpServlet{
 		
 		// 1) 새션 얻어오기
 		HttpSession session = req.getSession();
+		
 		// 2) 세션 저장하기
 		session.setAttribute("animal", animal);
 		
