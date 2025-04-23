@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<script>
+
+ 
+
+setInterval(function() {
+    fetch('/sessionPrj2/session-check')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if ( data.valid) {
+                if (confirm("정해진 세션이 만료되었습니다. 시간을 연장하시겠습니까?")) {
+                    // 사용자가 '확인'을 누르면 세션 연장 요청
+                    fetch('/sessionPrj2/keep-alive')
+                        .then(res => res.json())
+                        .then(result => {                           
+                                alert(result.message);                            
+                        }).catch(err => {
+                            console.error("세션 연장 실패:", err);
+                            alert(result.message);   
+                            window.location.href = "/sessionPrj/login";
+                        });
+                } else {
+                    // 사용자가 '취소' 누르면 로그인 페이지 이동
+                    window.location.href = "/login";
+                }
+            }
+        });
+}, 30000); //30초마다 검사
+
+ 
+ 
+
+
+</script>
+</body>
+</html>
